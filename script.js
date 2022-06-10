@@ -14,6 +14,7 @@ async function handleClick(e) {
             activeItem.classList.remove('active');
             element.classList.add('active');
 
+            document.querySelector('#albumId').innerText = e.target.dataset.albumId;
             const photos = await getAlbumPhotos(e.target.dataset.albumId)
             await renderPhotos(photos);
 
@@ -50,7 +51,7 @@ async function renderAlbums(albums) {
                 return;
             }
 
-            lis += `<li class="list-group-item ${idx === 0 ? 'active' : ''}" data-action="get-photos" data-album-id="${album.id}">${album.title}</li>`;
+            lis += `<li class="list-group-item ${idx === 0 ? 'active' : ''}" data-action="get-photos" data-album-id="${album.id}">${album.id}. ${album.title}</li>`;
         }
 
         albumsList.innerHTML = lis;
@@ -82,6 +83,7 @@ async function render() {
         const albums = await getAlbums();
         await renderAlbums(albums);
 
+        document.querySelector('#albumId').innerText = albums[0].id;
         const photos = await getAlbumPhotos(albums[0].id);
         await renderPhotos(photos);
     } catch (err) {

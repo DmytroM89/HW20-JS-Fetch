@@ -20,6 +20,12 @@ html, body {
     border-color: #0d6efd;
 }
 
+.photos-head {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
 .photos {
     display: grid;
     grid-gap: 10px;

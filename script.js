@@ -14,7 +14,7 @@ async function handleClick(e) {
             activeItem.classList.remove('active');
             element.classList.add('active');
 
-            document.querySelector('#albumId').innerText = e.target.dataset.albumId;
+            renderAlbumId(e.target.dataset.albumId);
             const photos = await getAlbumPhotos(e.target.dataset.albumId)
             await renderPhotos(photos);
 
@@ -43,6 +43,7 @@ async function getAlbumPhotos(albumId) {
 }
 
 async function renderAlbums(albums) {
+    console.log(!{});
     try {
         let lis = '';
 
@@ -78,12 +79,16 @@ async function renderPhotos(photos) {
     }
 }
 
+function renderAlbumId(id) {
+    document.querySelector('#albumId').innerText = id;
+}
+
 async function render() {
     try {
         const albums = await getAlbums();
         await renderAlbums(albums);
 
-        document.querySelector('#albumId').innerText = albums[0].id;
+        renderAlbumId(albums[0].id);
         const photos = await getAlbumPhotos(albums[0].id);
         await renderPhotos(photos);
     } catch (err) {
